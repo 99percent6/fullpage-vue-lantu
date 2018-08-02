@@ -142,7 +142,7 @@ var Fullpage = function () {
                     var dir = _this2.opts.dir;
                     var sub = _this2.direction = dir === 'v' ? (e.changedTouches[0].pageY - _this2.startY) / _this2.height : (e.changedTouches[0].pageX - _this2.startX) / _this2.width;
                     var der = sub > _this2.opts.der ? -1 : sub < -_this2.opts.der ? 1 : 0;
-                    var curIndex = der + _this2.curIndex;
+                    var curIndex = parseInt(der) + parseInt(_this2.curIndex);
                     _this2.moveTo(curIndex, true);
                 });
                 addEventListener(document.body, 'touchmove', function (e) {
@@ -182,17 +182,20 @@ var Fullpage = function () {
             addEventListener(el, 'mouseup', function (e) {
                 isMousedown = false;
             });
-            addEventListener(el, 'mousemove', function (e) {
-                //e.preventDefault();
-                if (_this2.opts.movingFlag || !isMousedown) {
-                    return false;
-                }
-                var dir = _this2.opts.dir;
-                var sub = _this2.direction = dir === 'v' ? (e.pageY - _this2.startY) / _this2.height : (e.pageX - _this2.startX) / _this2.width;
-                var der = sub > _this2.opts.der ? -1 : sub < -_this2.opts.der ? 1 : 0;
-                var curIndex = der + _this2.curIndex;
-                _this2.moveTo(curIndex, true);
-            });
+            // addEventListener(el, 'mousemove', e => {
+            //     //e.preventDefault();
+            //     if (this.opts.movingFlag || !isMousedown) {
+            //         return false
+            //     }
+            //     let dir = this.opts.dir
+            //     let sub = (this.direction =
+            //         dir === 'v'
+            //             ? (e.pageY - this.startY) / this.height
+            //             : (e.pageX - this.startX) / this.width)
+            //     let der = sub > this.opts.der ? -1 : sub < -this.opts.der ? 1 : 0
+            //     let curIndex = der + this.curIndex
+            //     this.moveTo(curIndex, true)
+            // })
 
             var debounceTimer = void 0,
                 interval = 1200,

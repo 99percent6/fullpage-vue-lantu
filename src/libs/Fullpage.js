@@ -99,7 +99,7 @@ class Fullpage {
                           this.width)
                 let der =
                     sub > this.opts.der ? -1 : sub < -this.opts.der ? 1 : 0
-                let curIndex = der + this.curIndex
+                let curIndex = parseInt(der) + parseInt(this.curIndex)
                 this.moveTo(curIndex, true)
             })
             addEventListener(document.body, 'touchmove', e => {
@@ -148,20 +148,20 @@ class Fullpage {
         addEventListener(el, 'mouseup', e => {
             isMousedown = false
         })
-        addEventListener(el, 'mousemove', e => {
-            //e.preventDefault();
-            if (this.opts.movingFlag || !isMousedown) {
-                return false
-            }
-            let dir = this.opts.dir
-            let sub = (this.direction =
-                dir === 'v'
-                    ? (e.pageY - this.startY) / this.height
-                    : (e.pageX - this.startX) / this.width)
-            let der = sub > this.opts.der ? -1 : sub < -this.opts.der ? 1 : 0
-            let curIndex = der + this.curIndex
-            this.moveTo(curIndex, true)
-        })
+        // addEventListener(el, 'mousemove', e => {
+        //     //e.preventDefault();
+        //     if (this.opts.movingFlag || !isMousedown) {
+        //         return false
+        //     }
+        //     let dir = this.opts.dir
+        //     let sub = (this.direction =
+        //         dir === 'v'
+        //             ? (e.pageY - this.startY) / this.height
+        //             : (e.pageX - this.startX) / this.width)
+        //     let der = sub > this.opts.der ? -1 : sub < -this.opts.der ? 1 : 0
+        //     let curIndex = der + this.curIndex
+        //     this.moveTo(curIndex, true)
+        // })
 
         let debounceTimer,
             interval = 1200,
